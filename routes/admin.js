@@ -55,6 +55,7 @@ router.get("/dashboard", validateAdmin, (req, res) => {
   res.render("admin_dashboard");
 });
 
+// added the logout functionality
 router.get("/logout", (req, res) => {
     res.cookie("token", "")
     res.send("logged out successfully")
