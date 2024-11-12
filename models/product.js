@@ -19,7 +19,7 @@ const productSchema = mongoose.Schema({
     required: true, // Assuming category is required
   },
   stock: {
-    type: Boolean,
+    type: Number,
     required: true, // Assuming stock is required
   },
   description: {
@@ -29,7 +29,7 @@ const productSchema = mongoose.Schema({
     maxlength: 500, // Maximum length for description
   },
   image: {
-    type: String,
+    type: Buffer,
     required: true, // Assuming image URL is required
   },
 });
@@ -43,7 +43,7 @@ const validateProduct = (data) => {
     name: Joi.string().min(3).max(100).required(), // Validating name with min and max length
     price: Joi.number().min(0).required(), // Price must be a non-negative number
     category: Joi.string().required(), // Validating that category is a required string
-    stock: Joi.boolean().required(), // Validating that stock is a required boolean
+    stock: Joi.number().required(), // Validating that stock is a required boolean
     description: Joi.string().min(10).max(500).required(), // Validating description with min and max length
     image: Joi.string().optional(), // Validating that image is a required string (URL format)
   });
