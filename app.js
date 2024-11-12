@@ -5,6 +5,9 @@ const app = express();
 const indexRouter = require('./routes/index');
 const authRouter = require("./routes/auth");
 const adminRouter = require("./routes/admin")
+const productRouter = require("./routes/product")
+const categoryRouter = require("./routes/category")
+
 const morgan = require("morgan");
 const expressSession = require("express-session");
 const cookieParser = require("cookie-parser")
@@ -15,6 +18,8 @@ require("./config/google_auth_config");
 
 app.use(morgan("dev"));
 app.set("view engine", "ejs"); // Corrected this line
+
+
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -32,5 +37,7 @@ app.use(
 app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/admin", adminRouter)
+app.use("/products", productRouter);
+app.use("/categories", categoryRouter);
 
 app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
